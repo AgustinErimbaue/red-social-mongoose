@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
+
 const PostSchema = new mongoose.Schema(
   {
     username: String,
@@ -10,4 +11,4 @@ const PostSchema = new mongoose.Schema(
 
 const Post = mongoose.model("Post", PostSchema);
 
-model.export = Post;
+module.exports = Post;
