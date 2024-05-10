@@ -18,6 +18,15 @@ const PostController ={
         console.log(error)
         res.status(500).send(error)
       }
+    },
+    async getAll(req,res){
+      try {
+        const posts = await Post.find()
+        res.send(posts)
+      } catch (error) {
+        console.log(error)
+        res.status(500).send(error)
+      }
     }
 }
 
