@@ -6,3 +6,5 @@ const PORT = 3002;
 dbConnection()
 
 app.listen(PORT, () => console.log(`Servidor levantado en el puerto ${PORT}`));
+
+console.log('hola)')
