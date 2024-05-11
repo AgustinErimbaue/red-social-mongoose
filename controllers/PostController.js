@@ -27,6 +27,15 @@ const PostController ={
         console.log(error)
         res.status(500).send(error)
       }
+    },
+    async getById(req,res){
+      try {
+        const post = await Post.findById(req.params._id)
+        res.send(post)
+      } catch (error) {
+        console.log(error)
+        res.status(500).send(error)
+      }
     }
 }
 
