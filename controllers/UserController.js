@@ -35,6 +35,15 @@ const UserController = {
       res.status(500).send(error);
     }
   },
+  async getUser(req, res) {
+    try {
+      const user = await User.findById(req.user._id);
+      res.send(user)
+    } catch (error) {
+        console.error(error);
+        res.status(400).send({message:"No estas logueado"})
+    }
+  },
 };
 
 module.exports = UserController;
