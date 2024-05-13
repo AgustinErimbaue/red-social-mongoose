@@ -8,7 +8,7 @@ const CommentController = {
     } catch (error) {
       console.error(error);
       res
-        .sttaus(500)
+        .status(500)
         .send({ message: "Ha habido un problema al crear el comentario" });
     }
   },
