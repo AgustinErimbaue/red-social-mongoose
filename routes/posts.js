@@ -1,14 +1,15 @@
 const express = require("express")
 const PostController = require("../controllers/PostController")
+const { authentication, isAuthor } = require("../middleware/authentication")
 const router = express.Router()
 
 
 router.post("/",PostController.create)
-router.put("/id/:_id",PostController.update)
+router.put("/id/:_id",authentication,isAuthor,PostController.update)
 router.get("/", PostController.getAll)
 router.get("/id/:_id", PostController.getById)
 router.get("/username/:username", PostController.getPostByUserName)
-router.delete("/id/:_id", PostController.deleteById)
+router.delete("/id/:_id",authentication,isAuthor, PostController.deleteById)
 
 
 

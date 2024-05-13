@@ -43,7 +43,7 @@ const UserController = {
         console.error(error);
         res.status(400).send({message:"No estas logueado"})
     }
-  },
-};
+  }
+}
 
 module.exports = UserController;
