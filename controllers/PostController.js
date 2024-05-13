@@ -66,5 +66,6 @@ const PostController ={
     }  
 }
 
+console.log("hola");
 
 module.exports = PostController
