@@ -6,7 +6,7 @@ const authentication = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const payload = jwt.verify(token, JWT_SECRET);
-    const user = await User.findOne({ _id: payload._id, tokens });
+    const user = await User.findOne({ _id: payload._id, tokens:token });
     if (!user) {
       return res.status(401).send({ message: "No estas autorizado" });
     }
