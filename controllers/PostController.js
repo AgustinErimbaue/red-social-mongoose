@@ -1,9 +1,13 @@
 const Post = require("../models/Post")
+const User = require("../models/User")
 
 const PostController ={
     async create(req,res){
       try {
-        const post = await Post.create(req.body)
+        const post = await Post.create({...req.body, 
+          userId: req.user._id
+        })
+        await User.findByIdAndUpdate(req.user._id, {$push: {postIds:post._id}})
         res.status(201).send(post)
       } catch (error) {
         console.log(error)
@@ -19,13 +23,15 @@ const PostController ={
         res.status(500).send(error)
       }
     },
-    async getAll(req,res){
+    async getAll(req, res) {
       try {
+        const { page = 1, limit = 10 } = req.query;
         const posts = await Post.find()
-        res.send(posts)
+          .limit(limit)
+          .skip((page - 1) * limit);
+        res.send(posts);
       } catch (error) {
-        console.log(error)
-        res.status(500).send(error)
+        console.error(error);
       }
     },
     async getById(req,res){
