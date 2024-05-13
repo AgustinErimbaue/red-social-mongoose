@@ -5,10 +5,12 @@ const UserSchema = new mongoose.Schema(
     username: String,
     email: String,
     password: String,
+    age: Number,
     role: "user",
-    PostIds: [],
+    tokens: [],
+    postIds: [{ type: ObjectId, ref: "Post" }],
   },
   { timestamps: true }
 );
-const User = mongoose.model("User", PostSchema);
+const User = mongoose.model("User", UserSchema);
 module.exports = User;
