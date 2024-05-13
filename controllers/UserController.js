@@ -53,7 +53,7 @@ const UserController = {
     } catch (error) {
       res.status(500).send({message:"Hubo un problema al intentar desconectar al usuario"})
     }
-  },
-};
+  }
+}
 
 module.exports = UserController;
