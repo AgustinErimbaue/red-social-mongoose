@@ -6,5 +6,6 @@ const router = express.Router();
 router.post("/", UserController.register);
 router.get("/user", authentication, UserController.getUser);
 router.post("/login", UserController.login);
+router.delete("/logout", authentication, UserController.logout);
 
 module.exports = router;

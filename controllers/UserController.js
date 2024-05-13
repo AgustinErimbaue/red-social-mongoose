@@ -38,10 +38,20 @@ const UserController = {
   async getUser(req, res) {
     try {
       const user = await User.findById(req.user._id);
-      res.send(user)
+      res.send(user);
     } catch (error) {
-        console.error(error);
-        res.status(400).send({message:"No estas logueado"})
+      console.error(error);
+      res.status(400).send({ message: "No estas logueado" });
+    }
+  },
+  async logout(req, res) {
+    try {
+      await User.findByIdAndUpdate(req.user_id, {
+        $pull: { tokens: req.headers.authorizarion },
+      });
+      res.send({message:"Desconectado con exito"})
+    } catch (error) {
+      res.status(500).send({message:"Hubo un problema al intentar desconectar al usuario"})
     }
   },
 };
