@@ -4,7 +4,7 @@ const { authentication, isAuthor } = require("../middleware/authentication")
 const router = express.Router()
 
 
-router.post("/",PostController.create)
+router.post("/",authentication,PostController.create)
 router.put("/id/:_id",authentication,isAuthor,PostController.update)
 router.get("/", PostController.getAll)
 router.get("/id/:_id", PostController.getById)
