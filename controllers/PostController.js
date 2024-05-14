@@ -28,15 +28,13 @@ const PostController ={
         const { page = 1, limit = 10 } = req.query;
         const posts = await Post.find()
           .populate({
-            path: 'comments',
+            path: 'commentIds',
             populate: {
-              path: 'userId' 
+              path: 'userIds' 
             }
           })
-          .populate('userId')
           .limit(parseInt(limit))
           .skip((page - 1) * parseInt(limit))
-          .exec();
   
         res.send(posts);
       } catch (error) {
