@@ -1,5 +1,4 @@
 const Comment = require("../models/Comment");
-const Post = require("../models/Post");
 
 const CommentController = {
   async create(req, res) {
@@ -18,6 +17,21 @@ const CommentController = {
         .send({ message: "Ha habido un problema al crear el comentario" });
     }
   },
+  //falta hacer que el comentario recoja el id de la persona que lo hace
+  async update(req, res) {
+    try {
+      const comment = await Comment.findByIdAndUpdate(
+        req.params._id,req.body,
+        {
+          new: true,
+        }
+      );
+      res.status(201).send({ msg: "Post actualizado correctamente", comment });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },
 };
 
-module.exports = CommentController
+module.exports = CommentController;
