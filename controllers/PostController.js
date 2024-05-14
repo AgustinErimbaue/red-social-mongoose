@@ -25,13 +25,13 @@ const PostController ={
     },
     async getAll(req, res) {
       try {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 10 } = req.query
         const posts = await Post.find()
           .limit(limit)
           .skip((page - 1) * limit);
         res.send(posts);
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     },
     async getById(req,res){
@@ -66,6 +66,5 @@ const PostController ={
     }  
 }
 
-console.log("hola");
 
 module.exports = PostController
