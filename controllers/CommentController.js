@@ -40,6 +40,15 @@ const CommentController = {
       res.status(500).send(error);
     }
   },
+  async deleteById(req, res) {
+    try {
+      const comment = await Comment.findByIdAndDelete(req.params._id, {...req.body, userId:req.user._id});
+      res.send({ msg: "Comentario borrado exitosamente" },comment);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },
 };
 
 module.exports = CommentController;
