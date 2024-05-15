@@ -4,9 +4,10 @@ const Post = require("../models/Post");
 const CommentController = {
   async create(req, res) {
     try {
-      const comment = await Comment.create({...req.body, 
-        userId: req.user._id
-      })
+      const comment = await Comment.create({
+        ...req.body,
+        userId: req.user._id,
+      });
       await Post.findByIdAndUpdate(
         req.params._id,
         { $push: { commentIds: comment._id } },
@@ -21,13 +22,12 @@ const CommentController = {
         .send({ message: "Ha habido un problema al crear el comentario" });
     }
   },
-  
+
   async update(req, res) {
     try {
       const comment = await Comment.findByIdAndUpdate(
         req.params._id,
-        req.body,
-        { userId: userId },
+        { ...req.body, userId: req.user._id },
         {
           new: true,
         }
