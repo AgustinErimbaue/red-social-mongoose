@@ -17,9 +17,9 @@ const postSchema = new mongoose.Schema({
     required:  [true, "Por favor rellena tu nombre" ],
   },
   commentIds: [{
-    type: ObjectId,
-    ref: 'Comment',
-  }]
+    author: {type: ObjectId,ref: 'User'},
+    type: ObjectId, ref: 'Comment'}
+  ]
 },
 { timestamps: true })
 

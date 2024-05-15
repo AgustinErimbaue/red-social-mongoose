@@ -5,7 +5,7 @@ const CommentSchema = new mongoose.Schema(
   {
     username: String,
     body: String,
-    userId: { type: ObjectId, ref: "User" },
+    author: { type: ObjectId, ref: "User" },
     postId: { type: ObjectId, ref: "Post" }
   },
   { timestamps: true }

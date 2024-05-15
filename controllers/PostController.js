@@ -16,7 +16,7 @@ const PostController ={
     },
     async update(req,res){
       try {
-        const post = await Post.findByIdAndUpdate(req.params._id, req.body, {new:true})
+        const post = await Post.findByIdAndUpdate(req.params._id, {...req.body,author:req.author}, {new:true})
         res.send({msg:"Post actualizado correctamente", post})
       } catch (error) {
         console.log(error)
@@ -27,12 +27,10 @@ const PostController ={
       try {
         const { page = 1, limit = 10 } = req.query;
         const posts = await Post.find()
-          .populate({
-            path: 'commentIds',
-            populate: {
-              path: 'userIds' 
-            }
-          })
+        .populate({
+          path: 'commentIds',
+          populate: { path: 'author' } 
+        })
           .limit(parseInt(limit))
           .skip((page - 1) * parseInt(limit))
   
