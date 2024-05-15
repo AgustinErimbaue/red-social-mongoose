@@ -4,7 +4,9 @@ const Post = require("../models/Post");
 const CommentController = {
   async create(req, res) {
     try {
-      const comment = await Comment.create(req.body)
+      const comment = await Comment.create({...req.body, 
+        userId: req.user._id
+      })
       await Post.findByIdAndUpdate(
         req.params._id,
         { $push: { commentIds: comment._id } },
@@ -19,16 +21,20 @@ const CommentController = {
         .send({ message: "Ha habido un problema al crear el comentario" });
     }
   },
-  //falta hacer que el comentario recoja el id de la persona que lo hace
+  
   async update(req, res) {
     try {
       const comment = await Comment.findByIdAndUpdate(
-        req.params._id,req.body,
+        req.params._id,
+        req.body,
+        { userId: userId },
         {
           new: true,
         }
       );
-      res.status(201).send({ msg: "Post actualizado correctamente", comment });
+      res
+        .status(201)
+        .send({ msg: "Comentario actualizado correctamente", comment });
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
