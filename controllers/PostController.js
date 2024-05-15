@@ -28,9 +28,8 @@ const PostController = {
         const { page = 1, limit = 10 } = req.query;
         const posts = await Post.find()
         .populate({
-          path: 'commentIds',
-          populate: { path: 'author' } 
-        })
+          path: 'commentIds'})
+          // .populate({ path: 'author' })
           .limit(parseInt(limit))
           .skip((page - 1) * parseInt(limit))
   
@@ -68,6 +67,24 @@ const PostController = {
         res.send(posts)
       } catch (error) {
         console.log(error)
+      }
+    },
+    async like(req,res){
+      try {
+        const post = await Post.findByIdAndUpdate(
+          req.params._id,
+          {$push:{likes:req.user._id}},
+          {new:true}
+        )
+        await User.findByIdAndUpdate(
+          req.user._id,
+          { $push: { likesList: req.params._id } },
+          { new: true }
+        )  
+        res.send({msg:"Has añadido un like a este post", post})
+      } catch (error) {
+        console.error(error)
+        res.status(500).send({msg: "Hubo un problema al dar like"})
       }
     }  
 };
