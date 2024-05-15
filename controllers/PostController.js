@@ -51,7 +51,7 @@ const PostController ={
     },
     async deleteById(req,res){
       try {
-        const post = await Post.findByIdAndDelete(req.params._id)
+        const post = await Post.findByIdAndDelete(req.params._id, {...req.body,author:req.author})
         res.send({msg:"Publicación borrada exitosamente", post})
       } catch (error) {
         console.log(error)
