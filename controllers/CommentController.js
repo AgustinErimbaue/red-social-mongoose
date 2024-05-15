@@ -1,11 +1,13 @@
 const Comment = require("../models/Comment");
+const Post = require("../models/Post");
 
 const CommentController = {
   async create(req, res) {
     try {
-      const comment = await Post.findByIdAndUpdate(
+      const comment = await Comment.create(req.body)
+      await Post.findByIdAndUpdate(
         req.params._id,
-        { $push: { commentIds: { comment:req.body.comment, userId: req.user._id } } },
+        { $push: { commentIds: comment._id } },
         { new: true }
       );
 
