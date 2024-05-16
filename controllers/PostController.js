@@ -89,7 +89,7 @@ const PostController = {
     async removeLike(req, res) {
       try {
         
-    
+
         const post = await Post.findByIdAndUpdate(
           req.params._id,
           { $pull: { likes: req.user._id } },
