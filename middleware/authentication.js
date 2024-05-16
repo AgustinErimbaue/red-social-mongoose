@@ -2,7 +2,8 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config/keys");
+require("dotenv").config();
+const { JWT_SECRET } = process.env;
 
 const authentication = async (req, res, next) => {
   try {
@@ -31,12 +32,10 @@ const isAuthor = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    return res
-      .status(500)
-      .send({
-        error,
-        message: "Ha habido un problema al comprobar la autoría del pedido",
-      });
+    return res.status(500).send({
+      error,
+      message: "Ha habido un problema al comprobar la autoría del pedido",
+    });
   }
 };
 
@@ -49,12 +48,10 @@ const isAuthorComment = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    return res
-      .status(500)
-      .send({
-        error,
-        message: "Ha habido un problema al comprobar la autoría del comentario",
-      });
+    return res.status(500).send({
+      error,
+      message: "Ha habido un problema al comprobar la autoría del comentario",
+    });
   }
 };
 
