@@ -77,7 +77,7 @@ const PostController = {
         )
         await User.findByIdAndUpdate(
           req.user._id,
-          { $push: { likesList: req.params._id } },
+          { $push: { likes: req.params._id } },
           { new: true }
         )  
         res.send({msg:"Has añadido un like a este post", post})
@@ -86,20 +86,27 @@ const PostController = {
         res.status(500).send({msg: "Hubo un problema al dar like"})
       }
     },
-    async removeLike(req,res){
+    async removeLike(req, res) {
       try {
-        const like = await Post.findByIdAndDelete(
+        
+    
+        const post = await Post.findByIdAndUpdate(
           req.params._id,
-          {$pull:{likesList:req.user._id}},
-          {new:true}
-        )
-        res.send({msg:"Has quitado un like a este post", like})
-
+          { $pull: { likes: req.user._id } },
+          { new: true }
+        );
+    
+        if (!post) {
+          return res.status(404).send({ msg: "No se encontró el post" });
+        }
+    
+        res.send({ msg: "Has quitado un like a este post", post });
       } catch (error) {
-        console.error(error)
-        res.status(500).send({msg: "Hubo un problema al quitar el like"})
+        console.error(error);
+        res.status(500).send({ msg: "Hubo un problema al quitar el like" });
       }
-    }  
+    }
+    
 };
 
 module.exports = PostController;
