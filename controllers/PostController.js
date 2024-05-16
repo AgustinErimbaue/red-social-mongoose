@@ -86,6 +86,20 @@ const PostController = {
         console.error(error)
         res.status(500).send({msg: "Hubo un problema al dar like"})
       }
+    },
+    async removeLike(req,res){
+      try {
+        const like = await Post.findByIdAndDelete(
+          req.params._id,
+          {$pull:{likesList:req.user._id}},
+          {new:true}
+        )
+        res.send({msg:"Has quitado un like a este post", like})
+
+      } catch (error) {
+        console.error(error)
+        res.status(500).send({msg: "Hubo un problema al quitar el like"})
+      }
     }  
 };
 

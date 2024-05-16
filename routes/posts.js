@@ -11,6 +11,7 @@ router.get("/id/:_id", PostController.getById)
 router.get("/username/:username", PostController.getPostByUserName)
 router.delete("/id/:_id",authentication,isAuthor, PostController.deleteById)
 router.put("/likes/:_id",authentication, PostController.like)
+router.delete("/likes/:_id",authentication, PostController.removeLike)
 
 
 
