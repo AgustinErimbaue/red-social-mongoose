@@ -29,7 +29,6 @@ const PostController = {
         const posts = await Post.find()
         .populate({
           path: 'commentIds'})
-          // .populate({ path: 'author' })
           .limit(parseInt(limit))
           .skip((page - 1) * parseInt(limit))
   
