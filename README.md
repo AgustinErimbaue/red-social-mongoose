@@ -91,7 +91,7 @@ La API expone varios endpoints para gestionar usuarios, publicaciones y comentar
 - **Cerrar sesión**
   - **POST** `/users/logout`
  
-#### Dcumentacion de postman
+#### Documentacion de postman
 
 [Documentación de API en Postman](https://documenter.getpostman.com/view/34523192/2sA3JT2dfd)
 
