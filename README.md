@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto es una API para gestionar publicaciones, comentarios y usuarios utilizando Node.js, Express y MongoDB con Mongoose. Incluye autenticación de usuarios, creación, actualización y eliminación de publicaciones y comentarios, así como la funcionalidad de dar "like" a publicaciones.
+Este proyecto es una API para gestionar publicaciones, comentarios y usuarios utilizando Node.js, Express y MongoDB con Mongoose. Incluye autenticación de usuarios, creación, actualización y eliminación de publicaciones y comentarios, así como la funcionalidad de dar y quitar "like" a publicaciones.
 
 ## Tecnologías Utilizadas
 
