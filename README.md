@@ -1,4 +1,4 @@
-# Clase Mongoose
+# Red social mongoose
 
 ## Descripción
 
