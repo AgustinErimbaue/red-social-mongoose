@@ -1,8 +1,8 @@
-# Clase Mongoose
+# Red social mongoose
 
 ## Descripción
 
-Este proyecto es una API para gestionar publicaciones, comentarios y usuarios utilizando Node.js, Express y MongoDB con Mongoose. Incluye autenticación de usuarios, creación, actualización y eliminación de publicaciones y comentarios, así como la funcionalidad de dar "like" a publicaciones.
+Este proyecto es una API para gestionar publicaciones, comentarios y usuarios utilizando Node.js, Express y MongoDB con Mongoose. Incluye autenticación de usuarios, creación, actualización y eliminación de publicaciones y comentarios, así como la funcionalidad de dar y quitar "like" a publicaciones.
 
 ## Tecnologías Utilizadas
 
@@ -61,7 +61,7 @@ La API expone varios endpoints para gestionar usuarios, publicaciones y comentar
 
 ### Endpoints
 
-#### Usuarios
+#### Ejemplos Usuarios
 
 - **Registrar un usuario**
   - **POST** `/users/register`
@@ -90,67 +90,11 @@ La API expone varios endpoints para gestionar usuarios, publicaciones y comentar
 
 - **Cerrar sesión**
   - **POST** `/users/logout`
+ 
+#### Documentacion de postman
 
-#### Publicaciones
+[Documentación de API en Postman](https://documenter.getpostman.com/view/34523192/2sA3JT2dfd)
 
-- **Crear una publicación**
-  - **POST** `/posts`
-  - Cuerpo de la solicitud:
-    ```json
-    {
-      "title": "Título de la publicación",
-      "content": "Contenido de la publicación"
-    }
-    ```
-
-- **Actualizar una publicación**
-  - **PUT** `/posts/:_id`
-  - Cuerpo de la solicitud:
-    ```json
-    {
-      "title": "Nuevo título de la publicación",
-      "content": "Nuevo contenido de la publicación"
-    }
-    ```
-
-- **Eliminar una publicación**
-  - **DELETE** `/posts/:_id`
-
-- **Obtener todas las publicaciones**
-  - **GET** `/posts`
-
-- **Obtener una publicación por ID**
-  - **GET** `/posts/:_id`
-
-- **Dar like a una publicación**
-  - **POST** `/posts/:_id/like`
-
-- **Quitar like a una publicación**
-  - **POST** `/posts/:_id/removeLike`
-
-#### Comentarios
-
-- **Crear un comentario**
-  - **POST** `/comments`
-  - Cuerpo de la solicitud:
-    ```json
-    {
-      "postId": "ID_de_la_publicación",
-      "body": "Contenido del comentario"
-    }
-    ```
-
-- **Actualizar un comentario**
-  - **PUT** `/comments/:_id`
-  - Cuerpo de la solicitud:
-    ```json
-    {
-      "body": "Nuevo contenido del comentario"
-    }
-    ```
-
-- **Eliminar un comentario**
-  - **DELETE** `/comments/:_id`
 
 ## Middlewares
 
