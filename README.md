@@ -13,7 +13,6 @@ Este proyecto es una API para gestionar publicaciones, comentarios y usuarios ut
 - bcryptjs
 - jsonwebtoken
 - dotenv
-- nodemailer
 
 ## Instalación
 
